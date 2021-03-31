@@ -32,12 +32,18 @@ namespace Task1
             for (int i = 0; i < myArray.Length; i++)
             {
                 Console.WriteLine("Enter a number:");
-                myArray[i] = int.Parse(Console.ReadLine());
-                if (myArray[i] % 2 == 0)
+                bool ifSuccess = int.TryParse(Console.ReadLine(), out myArray[i]);
+                if (ifSuccess)
                 {
-                    sumOfEvenNumbers += myArray[i];
+                    if (myArray[i] % 2 == 0)
+                    {
+                        sumOfEvenNumbers += myArray[i];
+                    }
+                } else
+                {
+                    Console.WriteLine("Invalid input, try again");
+                    i--;
                 }
-
             }
 
             Console.WriteLine("The sum of the entered even numbers is: " + sumOfEvenNumbers);

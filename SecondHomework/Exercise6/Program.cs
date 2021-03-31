@@ -23,34 +23,41 @@ namespace Exercise6
                 Console.WriteLine(name);
             }
 
-            while (userChoice)
+            do
             {
                 Console.WriteLine("Enter a name to add it in the list:");
                 string newName = Console.ReadLine();
                 Array.Resize(ref names, names.Length + 1);
                 names[names.Length - 1] = newName;
 
-                Console.WriteLine("Do you want to enter a new name? Y/N?");
-
-                string confirm = Console.ReadLine();
-
-                switch (confirm)
+                while (userChoice)
                 {
-                    case "Y":
-                        continue;
-                    case "N":
-                        foreach (string name in names)
-                        {
-                            Console.WriteLine(name);
-                        }
-                        userChoice = false;
-                        break;
-                    default:
-                        Console.WriteLine("You didnt enter Y or N. Try entering again, capital letters only");
-                        userChoice = false;
-                        continue;
-                }
-            }
+                    Console.WriteLine("Do you want to enter a new name? Y/N?");
+
+                    string confirm = Console.ReadLine();
+
+                    switch (confirm)
+                    {
+                        case "Y":
+                            Console.WriteLine("Enter a name to add it in the list:");
+                            newName = Console.ReadLine();
+                            Array.Resize(ref names, names.Length + 1);
+                            names[names.Length - 1] = newName;
+                            continue;
+                        case "N":
+                            foreach (string name in names)
+                            {
+                                Console.WriteLine(name);
+                            }
+                            userChoice = false;
+                            break;
+                        default:
+                            Console.WriteLine("You didnt enter Y or N. Try entering again, capital letters only");
+                            break;
+                    }
+                };
+            } while (userChoice);
+
             Console.ReadLine();
         }
     }
