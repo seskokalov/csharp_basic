@@ -38,7 +38,7 @@ namespace Task2
             return null;
         }
 
-        static Car CheckCar (Car[] cars, string carSelection)
+        static Car CheckCar(Car[] cars, string carSelection)
         {
             foreach (Car car in cars)
             {
@@ -107,125 +107,175 @@ namespace Task2
             };
             #endregion
 
-            #region first driver
-            Console.WriteLine("Choose your car and drivers, find out who wins the race:");
-            Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("Choose the first driver:");
-            for (int i = 0; i < drivers.Length; i++)
+            while (true)
             {
-                Console.WriteLine($"{i + 1}) {drivers[i].DriverName}");
-            }
 
-            string firstDriverSelection = Console.ReadLine();
-            int driver01Skill = 0;
-            //bool inputCheck = true;
-
-            //while (inputCheck)
-            //{
-            Driver driver1 = CheckDriver(drivers, firstDriverSelection);
-                if (driver1 == null)
+                #region first driver
+                Console.WriteLine("Choose your car and drivers, find out who wins the race:");
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Choose the first driver:");
+                for (int i = 0; i < drivers.Length; i++)
                 {
-                    Console.WriteLine("Invalid input, try again! Use the name in the list.");
-                    return;
+                    Console.WriteLine($"{i + 1}) {drivers[i].DriverName}");
                 }
-            Console.WriteLine($"Selected driver is: {driver1.DriverName}, driver skill level is: {driver1.DriverSkill}");
-            firstDriverSelection = driver1.DriverName;
-            driver01Skill = driver1.DriverSkill;
-            //inputCheck = false;
-            //} 
 
-            //inputCheck = true;
-            #endregion
+                bool inputCheck = true;
+                string firstDriverSelection = "";
+                int driver01Skill = 0;
 
-            #region first car
-            Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("Choose the first car:");
-            for (int i = 0; i < cars.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} {cars[i].CarModel}");
-            }
-
-            string firstCarSelection = Console.ReadLine();
-            int car01Speed = 0;
-
-            //while (inputCheck)
-            //{
-                Car car1 = CheckCar(cars, firstCarSelection);
-                if (car1 == null)
+                while (inputCheck)
                 {
-                    Console.WriteLine("Invalid input, try again! Use the name in the list.");
-                    return;
+                    firstDriverSelection = Console.ReadLine();
+
+                    Driver driver1 = CheckDriver(drivers, firstDriverSelection);
+
+                    if (driver1 == null)
+                    {
+                        Console.WriteLine("Invalid input, try again! Use the name in the list.");
+                        inputCheck = true;
+                    }
+                    else if (driver1 != null)
+                    {
+                        Console.WriteLine($"Selected driver is: {driver1.DriverName}, driver skill level is: {driver1.DriverSkill}");
+                        firstDriverSelection = driver1.DriverName;
+                        driver01Skill = driver1.DriverSkill;
+                        inputCheck = false;
+                    }
+
                 }
-                Console.WriteLine($"Selected car is: {car1.CarModel}, car's max speed is: {car1.CarSpeed}");
-                firstCarSelection = car1.CarModel;
-                car01Speed = car1.CarSpeed;
-                //inputCheck = false;
-            //}
 
-            //inputCheck = true;
-            #endregion
+                inputCheck = true;
+                #endregion
 
-            #region second driver
-            Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("Choose the second driver:");
-            for (int i = 0; i < drivers.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}) {drivers[i].DriverName}");
-            }
-
-            string secondDriverSelection = Console.ReadLine();
-            int driver02Skill = 0;
-            //inputCheck = true;
-
-            //while (inputCheck)
-            //{
-                Driver driver2 = CheckDriver(drivers, secondDriverSelection);
-                if (driver2 == null)
+                #region first car
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Choose the first car:");
+                for (int i = 0; i < cars.Length; i++)
                 {
-                    Console.WriteLine("Invalid input, try again! Use the name in the list.");
-                    return;
+                    Console.WriteLine($"{i + 1} {cars[i].CarModel}");
                 }
-                Console.WriteLine($"Selected driver is: {driver2.DriverName}, driver skill level is: {driver2.DriverSkill}");
-                secondDriverSelection = driver2.DriverName;
-                driver01Skill = driver2.DriverSkill;
-                //inputCheck = false;
-            //}
 
-            //inputCheck = true;
-            #endregion
+                string firstCarSelection = "";
+                int car01Speed = 0;
 
-            #region second car
-            Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("Choose the second car:");
-            for (int i = 0; i < cars.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} {cars[i].CarModel}");
-            }
-
-            string secondCarSelection = Console.ReadLine();
-            int car02Speed = 0;
-
-            //while (inputCheck)
-            //{
-                Car car2 = CheckCar(cars, secondCarSelection);
-                if (car2 == null)
+                while (inputCheck)
                 {
-                    Console.WriteLine("Invalid input, try again! Use the name in the list.");
-                    return;
+                    firstCarSelection = Console.ReadLine();
+
+                    Car car1 = CheckCar(cars, firstCarSelection);
+
+                    if (car1 == null)
+                    {
+                        Console.WriteLine("Invalid input, try again! Use the name in the list.");
+                        inputCheck = true;
+                    }
+                    if (car1 != null)
+                    {
+                        inputCheck = false;
+                        Console.WriteLine($"Selected car is: {car1.CarModel}, car's max speed is: {car1.CarSpeed}");
+                        firstCarSelection = car1.CarModel;
+                        car01Speed = car1.CarSpeed;
+                    }
+
                 }
-                Console.WriteLine($"Selected car is: {car2.CarModel}, car's max speed is: {car2.CarSpeed}");
-                secondCarSelection = car2.CarModel;
-                car02Speed = car2.CarSpeed;
-                //inputCheck = false;
-            //}
 
-            //inputCheck = true;
-            #endregion
+                inputCheck = true;
 
-            Console.WriteLine("Selected cars and drivers will now race to the finish, press any button to continue");
-            Console.ReadLine();
+                #endregion
 
-            RaceCars(firstDriverSelection, firstCarSelection, car01Speed, driver01Skill, secondDriverSelection, secondCarSelection, car02Speed, driver02Skill);
+                #region second driver
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Choose the second driver:");
+                for (int i = 0; i < drivers.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {drivers[i].DriverName}");
+                }
+
+
+                string secondDriverSelection = "";
+                int driver02Skill = 0;
+
+                while (inputCheck)
+                {
+                    secondDriverSelection = Console.ReadLine();
+
+                    Driver driver2 = CheckDriver(drivers, secondDriverSelection);
+
+                    if (driver2 == null)
+                    {
+                        Console.WriteLine("Invalid input, try again! Use the name in the list.");
+                        inputCheck = true;
+                    }
+                    else if (driver2 != null)
+                    {
+                        Console.WriteLine($"Selected driver is: {driver2.DriverName}, driver skill level is: {driver2.DriverSkill}");
+                        secondDriverSelection = driver2.DriverName;
+                        driver02Skill = driver2.DriverSkill;
+                        inputCheck = false;
+                    }
+
+                }
+
+                inputCheck = true;
+                #endregion
+
+                #region second car
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Choose the second car:");
+                for (int i = 0; i < cars.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1} {cars[i].CarModel}");
+                }
+
+                string secondCarSelection = "";
+                int car02Speed = 0;
+
+                while (inputCheck)
+                {
+                    secondCarSelection = Console.ReadLine();
+
+                    Car car2 = CheckCar(cars, secondCarSelection);
+
+                    if (car2 == null)
+                    {
+                        Console.WriteLine("Invalid input, try again! Use the name in the list.");
+                        inputCheck = true;
+                    }
+                    if (car2 != null)
+                    {
+                        inputCheck = false;
+                        Console.WriteLine($"Selected car is: {car2.CarModel}, car's max speed is: {car2.CarSpeed}");
+                        secondCarSelection = car2.CarModel;
+                        driver02Skill = car2.CarSpeed;
+                    }
+
+                }
+
+                inputCheck = true;
+                #endregion
+
+                Console.WriteLine("Selected cars and drivers will now race to the finish, press any button to continue");
+                Console.ReadLine();
+
+                Console.WriteLine("----------------------------------------------------");
+
+                RaceCars(firstDriverSelection, firstCarSelection, car01Speed, driver01Skill, secondDriverSelection, secondCarSelection, car02Speed, driver02Skill);
+
+                Console.WriteLine("----------------------------------------------------");
+
+                Console.WriteLine("Race again? Press any key to race again, or enter Q to exit");
+
+                string exit = Console.ReadLine();
+
+                if (exit == "q" || exit == "Q")
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.Clear();
+                }
+            }
 
             Console.ReadLine();
         }
