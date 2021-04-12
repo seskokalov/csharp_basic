@@ -9,25 +9,37 @@ namespace Task2
             return speed * skill;
         }
 
-        static void RaceCars(string driver01, string car01, int speed01, int skill01, string driver02, string car02, int speed02, int skill02)
+        public string RaceCars(Car firstCar, Car secondCar)
         {
-            if (car01 == car02)
-            {
-                Console.WriteLine("Please select different cars for a more interesting race!");
-            }
-            else if (CalculateSpeed(speed01, skill01) > CalculateSpeed(speed02, skill02))
-            {
-                Console.WriteLine($"The {car01} won over the {car02}. The driver that won was {driver01} and was driving with a speed of {speed01}kmh");
-            }
-            else if (CalculateSpeed(speed01, skill01) < CalculateSpeed(speed02, skill02))
-            {
-                Console.WriteLine($"The {car02} won over the {car01}. The driver that won was {driver02} and was driving with a speed of {speed02}kmh");
-            }
-            else if (CalculateSpeed(speed01, skill01) == CalculateSpeed(speed02, skill02))
-            {
-                Console.WriteLine("It's a tie!");
-            }
+            return (CalculateSpeed(firstCar.CarDriver, firstCar.CarSpeed) >= CalculateSpeed(secondCar.CarDriver, secondCar.CarSpeed)
+                ? ($"Model: " + firstCar.CarModel + ", Speed: " + firstCar.CarSpeed + ", driver: " + firstCar.CarDriver)
+                : ($"Model: " + secondCar.CarModel + ", Speed: " + secondCar.CarSpeed + ", driver: " + secondCar.CarDriver));
         }
+
+        public int CalculateSpeed(Driver driver, int speed)
+        {
+            return driver.DriverSkill * speed;
+        }
+
+        //static void RaceCars(string driver01, string car01, int speed01, int skill01, string driver02, string car02, int speed02, int skill02)
+        //{
+        //    if (car01 == car02)
+        //    {
+        //        Console.WriteLine("Please select different cars for a more interesting race!");
+        //    }
+        //    else if (CalculateSpeed(speed01, skill01) > CalculateSpeed(speed02, skill02))
+        //    {
+        //        Console.WriteLine($"The {car01} won over the {car02}. The driver that won was {driver01} and was driving with a speed of {speed01}kmh");
+        //    }
+        //    else if (CalculateSpeed(speed01, skill01) < CalculateSpeed(speed02, skill02))
+        //    {
+        //        Console.WriteLine($"The {car02} won over the {car01}. The driver that won was {driver02} and was driving with a speed of {speed02}kmh");
+        //    }
+        //    else if (CalculateSpeed(speed01, skill01) == CalculateSpeed(speed02, skill02))
+        //    {
+        //        Console.WriteLine("It's a tie!");
+        //    }
+        //}
 
         static Driver CheckDriver(Driver[] drivers, string driverSelection)
         {
@@ -120,14 +132,14 @@ namespace Task2
                 }
 
                 bool inputCheck = true;
-                string firstDriverSelection = "";
+                Car firstCar = new Car();
                 int driver01Skill = 0;
 
                 while (inputCheck)
                 {
-                    firstDriverSelection = Console.ReadLine();
+                    firstCar.CarDriver.DriverName = Console.ReadLine();
 
-                    Driver driver1 = CheckDriver(drivers, firstDriverSelection);
+                    Driver driver1 = CheckDriver(drivers, firstCar.CarDriver.DriverName);
 
                     if (driver1 == null)
                     {
@@ -137,7 +149,7 @@ namespace Task2
                     else if (driver1 != null)
                     {
                         Console.WriteLine($"Selected driver is: {driver1.DriverName}, driver skill level is: {driver1.DriverSkill}");
-                        firstDriverSelection = driver1.DriverName;
+                        firstCar.CarDriver.DriverName = driver1.DriverName;
                         driver01Skill = driver1.DriverSkill;
                         inputCheck = false;
                     }
@@ -259,7 +271,9 @@ namespace Task2
 
                 Console.WriteLine("----------------------------------------------------");
 
-                RaceCars(firstDriverSelection, firstCarSelection, car01Speed, driver01Skill, secondDriverSelection, secondCarSelection, car02Speed, driver02Skill);
+                //RaceCars(firstDriverSelection, firstCarSelection, car0/*1Speed, driver01Skill, secondDriverSelection, secondCarSelection, car02Speed, driver02Skill);*/
+
+
 
                 Console.WriteLine("----------------------------------------------------");
 

@@ -18,11 +18,7 @@ namespace Task2
 
         public string CarModel { get; set; }
         public int CarSpeed { get; set; }
-        public Driver[] CarDriver { get; set; }
+        public Driver CarDriver { get; set; }
 
-        public void RaceCars(Car firstCar, Car secondCar)
-        {
-
-        }
     }
 }
